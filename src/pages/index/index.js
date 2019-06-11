@@ -7,33 +7,35 @@ export default class Index extends Component {
   config = {
     navigationBarTitleText: '首页'
   }
-
+  constructor() {
+    super()
+    this.state = {
+      // listLen: [...Array.from({ length: 5 })]
+      listLen: [...Array(5).keys()]
+    }
+  }
   componentWillMount () { }
 
-  componentDidMount () {
-    console.log(Taro.showToast)
-    Taro.showToast({
-      title: 'abc',
-      duration: 4000
-    })
-    setTimeout(() => {
-      Taro.showLoading();  //显示abc
-    }, 4000)
-  }
+  componentDidMount () { }
 
   componentWillUnmount () { }
 
-  componentDidShow () {
-    console.log('componentDidShow', this)
-  }
+  componentDidShow () { }
 
   componentDidHide () { }
 
+  handleListClick (i) {
+    // 跳转到目的页面，打开新页面
+    Taro.navigateTo({
+      url: `/pages/detail/index?i=${i + 1}`
+    })
+
+  }
   render () {
     return (
-      <View className='index'>
-        <Text>你好</Text>
-      </View>
+      this.state.listLen.map((item, i) => {
+        return <View className="list-item" onClick={this.handleListClick.bind(this, i)}>我是列表{i + 1}</View>
+      })
     )
   }
 }

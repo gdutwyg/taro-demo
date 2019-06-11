@@ -1,3 +1,9 @@
-.index {
-  color: red;
+.list-item {
+  display: flex;
+  // justify-content: left;
+  align-items: center;
+  padding-left: 12px;
+  font-size: 32px;
+  height: 88px;
+  border-bottom: 1px solid #999;
 }

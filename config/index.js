@@ -1,3 +1,4 @@
+const path = require('path')  // 加在最上面
 const config = {
   projectName: 'demo',
   date: '2019-6-10',
@@ -91,7 +92,10 @@ const config = {
         }
       }
     }
-  }
+  },
+  alias: {
+    '@static': path.resolve(__dirname, '..', 'src/static')
+  },
 }
 
 module.exports = function (merge) {
