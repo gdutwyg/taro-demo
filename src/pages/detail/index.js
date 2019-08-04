@@ -54,7 +54,7 @@ export default class Detail extends Component {
   componentDidMount() {}
   componentWillUnmount() {
     events.off('togglePlaying', this.togglePlayingFn)
-    events.on('musicTimeUpdate', this.musicTimeUpdateFn)
+    events.off('musicTimeUpdate', this.musicTimeUpdateFn)
   }
   render() {
     return (

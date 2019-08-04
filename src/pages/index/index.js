@@ -40,9 +40,6 @@ export default class Index extends Component {
         curMusic: this.state.playList[curIndex]
       })
     })
-    events.on('musicTimeUpdate', ({ currentTime, duration }) => {
-      console.log(currentTime, duration)
-    })
   }
   async getMusicList() {
     const data = await request.get({
