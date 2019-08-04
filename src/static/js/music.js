@@ -28,7 +28,9 @@ class Music {
         title: '播放成功'
       })
       innerAudioContext.src = this.playList[i].url
-      innerAudioContext.play()
+      setTimeout(() => {
+        innerAudioContext.play()
+      }, 500)
     } else {
       // 音乐不可用
       Taro.showToast({
@@ -79,8 +81,5 @@ innerAudioContext.onPause(() => {
 // 进度更新
 innerAudioContext.onTimeUpdate(() => {
   console.log(innerAudioContext.currentTime)
-})
-innerAudioContext.onError(() => {
-  console.log('error')
 })
 export default music
