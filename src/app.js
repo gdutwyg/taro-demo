@@ -33,11 +33,7 @@ class App extends Component {
     // }
   }
 
-  componentDidMount() {
-    const innerAudioContext = Taro.createInnerAudioContext()
-    innerAudioContext.src = ''
-    // innerAudioContext.play()
-  }
+  componentDidMount() {}
 
   componentDidShow() {}
 

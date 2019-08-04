@@ -38,6 +38,7 @@
     background: #fff;
     padding-bottom: 0;
     font-size: 36px;
+    box-sizing: border-box;
     div,
     view {
       display: flex;
@@ -46,37 +47,38 @@
       height: 100%;
       color: #000;
       width: 50%;
-    }
-    div.active-tab {
-      color: #d33a31;
-      border-bottom: 2px solid #d33a31;
+      border-bottom: 2px solid transparent;
+      &.active-tab {
+        color: #d33a31;
+        border-bottom: 2px solid #d33a31;
+      }
     }
   }
   .music-list {
     position: relative;
     width: 100%;
-    height: calc(100% - 40px);
-    padding: 0 12px;
+    height: calc(100% - 80px);
+    padding: 0 24px;
     box-sizing: border-box;
     .music-list-header {
       top: 0;
       display: flex;
-      height: 50px;
+      height: 100px;
       align-items: center;
       border-bottom: 1px solid hsla(0, 0%, 100%, 0.4);
       color: rgba(0, 0, 0, 0.9);
       .music-header-name {
         flex: 1;
-        margin-left: 40px;
+        margin-left: 80px;
       }
       .music-header-author {
         float: right;
-        width: 100px;
+        width: 200px;
       }
     }
     .music-list-content {
       width: 100%;
-      height: calc(100% - 50px);
+      height: calc(100% - 100px);
       overflow: auto;
       .music-list-item {
         display: flex;
@@ -131,17 +133,18 @@
   align-items: center;
   bottom: 0;
   width: 100%;
-  height: 54px;
+  height: 108px;
   background: #c0c0c0;
-  padding: 8px 12px;
+  padding: 16px 24px;
   box-sizing: border-box;
   .music-img {
-    width: 38px;
-    height: 38px;
-    margin-right: 8px;
-    border-radius: 4px;
+    width: 76px;
+    height: 76px;
+    margin-right: 16px;
+    border-radius: 8px;
     overflow: hidden;
-    img {
+    img,
+    image {
       width: 100%;
       height: 100%;
     }
@@ -149,22 +152,22 @@
   .music-info {
     flex: 1;
     color: #333;
-    h2 {
-      font-size: 14px;
-      height: 20px;
-      line-height: 20px;
+    .music-name {
+      font-size: 28px;
+      height: 40px;
+      line-height: 40px;
     }
-    p {
+    .music-singer {
       color: #888;
-      font-size: 12px;
-      height: 18px;
-      line-height: 18px;
+      font-size: 24px;
+      height: 36px;
+      line-height: 36px;
     }
   }
   .btn-play {
-    width: 28px;
-    height: 28px;
-    margin-right: 30px;
+    width: 56px;
+    height: 56px;
+    margin-right: 60px;
     background-image: url(../../static/imgs/player/min-play.png);
     background-size: contain;
     background-position: 50%;
