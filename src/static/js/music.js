@@ -6,7 +6,6 @@ const innerAudioContext = Taro.createInnerAudioContext()
 class Music {
   constructor() {
     Object.assign(this, {
-      innerAudioContext,
       playList: [],
       curIndex: -1,
       isPlaying: false
@@ -16,7 +15,6 @@ class Music {
     this.playList = list || []
   }
   async playMuisc(i) {
-    console.log(i)
     this.curIndex = i
     const res = await request.get({
       url: 'https://api.mtnhao.com/check/music',
@@ -29,8 +27,8 @@ class Music {
         icon: 'none',
         title: '播放成功'
       })
-      this.innerAudioContext.src = this.playList[i].url
-      this.innerAudioContext.play()
+      innerAudioContext.src = this.playList[i].url
+      innerAudioContext.play()
     } else {
       // 音乐不可用
       Taro.showToast({
@@ -49,9 +47,7 @@ class Music {
   }
   // 暂停/播放
   togglePlaying() {
-    !this.isPlaying
-      ? this.innerAudioContext.play()
-      : this.innerAudioContext.pause()
+    !this.isPlaying ? innerAudioContext.play() : innerAudioContext.pause()
   }
   keyEvent(e) {
     // space 键
@@ -65,18 +61,26 @@ const music = new Music()
 innerAudioContext.onEnded(() => {
   music.nextMusic()
 })
+
 innerAudioContext.onPlay(() => {
   music.isPlaying = true
-  events.trigger('playing', {
+  events.trigger('togglePlaying', {
     isPlaying: true,
     curIndex: music.curIndex
   })
 })
 innerAudioContext.onPause(() => {
   music.isPlaying = false
-  events.trigger('playing', {
+  events.trigger('togglePlaying', {
     isPlaying: false,
     curIndex: music.curIndex
   })
+})
+// 进度更新
+innerAudioContext.onTimeUpdate(() => {
+  console.log(innerAudioContext.currentTime)
+})
+innerAudioContext.onError(() => {
+  console.log('error')
 })
 export default music

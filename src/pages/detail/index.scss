@@ -1,8 +1,132 @@
-.detail {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-left: 12px;
-  font-size: 32px;
+.music-detail {
+  height: 100%;
+  background: #000;
+  .detail-header {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    border-bottom: 2px solid hsla(0, 0%, 100%, 0.15);
+    .detail-header-back {
+      width: 56px;
+      height: 56px;
+      margin-left: 20px;
+      background-image: url(../../static/imgs/back.png);
+      background-size: contain;
+    }
+    .detail-header-info {
+      margin-left: 40px;
+      h1,
+      h-1 {
+        font-weight: 400;
+        font-size: 36px;
+        color: #fff;
+        margin-bottom: 8px;
+        display: block;
+      }
+      span,
+      text {
+        color: hsla(0, 0%, 100%, 0.4);
+      }
+    }
+  }
+  .detail-cover {
+    height: calc(100% - 100px - 144px);
+    .player-cd {
+      width: 100%;
+      overflow: hidden;
+      .player-needle {
+        position: relative;
+        top: -40px;
+        left: 50%;
+        z-index: 1;
+        width: 200px;
+        height: 300px;
+        text-align: center;
+        background-image: url(../../static/imgs/player/needle.png);
+        background-size: contain;
+        transform-origin: 32px 32px;
+        transition: all 0.3s;
+        transform: translate(-40px, 0);
+      }
+      .player-cover-box {
+        position: relative;
+        width: 480px;
+        height: 480px;
+        left: 50%;
+        top: -160px;
+        margin-left: -240px;
+        animation: circle-rotate 12s linear infinite;
+        .player-cover-bg {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          background-image: url(../../static/imgs/player/cover-bg.png);
+          background-size: contain;
+          z-index: 1;
+        }
+        img,
+        image {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 320px;
+          height: 320px;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+  .detail-player {
+    color: #fff;
+    height: 144px;
+    font-size: 24px;
+    .music-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      .btn {
+        width: 128px;
+        height: 128px;
+        background-size: contain;
+      }
+      .btn-mode {
+        background-image: url(../../static/imgs/player/mode-list.png);
+      }
+      .btn-prev {
+        background-image: url(../../static/imgs/player/prev.png);
+      }
+      .btn-play {
+        background-image: url(../../static/imgs/player/play.png);
+      }
+      .btn-next {
+        background-image: url(../../static/imgs/player/next.png);
+      }
+      .btn-list {
+        background-image: url(../../static/imgs/player/list.png);
+      }
+    }
+  }
+  &.pause {
+    .player-cd {
+      .player-needle {
+        transform: translate(-40px, 0) rotate(-30deg);
+      }
+      .player-cover-box {
+        animation-play-state: paused;
+      }
+    }
+    .music-controls {
+      .btn-play {
+        background-image: url(../../static/imgs/player/pause.png);
+      }
+    }
+  }
+}
+@keyframes circle-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

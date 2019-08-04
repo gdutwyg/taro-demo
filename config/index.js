@@ -1,4 +1,4 @@
-const path = require('path')  // 加在最上面
+const path = require('path') // 加在最上面
 const config = {
   projectName: 'demo',
   date: '2019-6-10',
@@ -14,9 +14,12 @@ const config = {
     babel: {
       sourceMap: true,
       presets: [
-        ['env', {
-          modules: false
-        }]
+        [
+          'env',
+          {
+            modules: false
+          }
+        ]
       ],
       plugins: [
         'transform-decorators-legacy',
@@ -25,13 +28,10 @@ const config = {
       ]
     }
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   weapp: {
     module: {
@@ -39,23 +39,17 @@ const config = {
         autoprefixer: {
           enable: true,
           config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
+            browsers: ['last 3 versions', 'Android >= 4.1', 'ios >= 8']
           }
         },
         pxtransform: {
           enable: true,
-          config: {
-
-          }
+          config: {}
         },
         url: {
           enable: true,
           config: {
-            limit: 10240 // 设定转换尺寸上限
+            limit: 100240 // 设定转换尺寸上限
           }
         },
         cssModules: {
@@ -76,11 +70,7 @@ const config = {
         autoprefixer: {
           enable: true,
           config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
+            browsers: ['last 3 versions', 'Android >= 4.1', 'ios >= 8']
           }
         },
         cssModules: {
@@ -95,10 +85,10 @@ const config = {
   },
   alias: {
     '@static': path.resolve(__dirname, '..', 'src/static')
-  },
+  }
 }
 
-module.exports = function (merge) {
+module.exports = function(merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }

@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import utils from '../../static/js/utils'
 import request from '../../static/js/request'
 import music, { events } from '../../static/js/music'
@@ -33,13 +33,15 @@ export default class Index extends Component {
   componentWillMount() {
     this.getMusicList()
     // 监听是否在播放
-    events.on('playing', ({ isPlaying, curIndex }) => {
-      console.log(isPlaying, curIndex)
+    events.on('togglePlaying', ({ isPlaying, curIndex }) => {
       this.setState({
         isPlaying,
         curIndex,
         curMusic: this.state.playList[curIndex]
       })
+    })
+    events.on('musicTimeUpdate', ({ currentTime, duration }) => {
+      console.log(currentTime, duration)
     })
   }
   async getMusicList() {
@@ -63,13 +65,15 @@ export default class Index extends Component {
   goPlay(i) {
     music.playMuisc(i)
   }
-  togglePlaying() {
+  togglePlaying(e) {
+    // 阻止冒泡
+    e.stopPropagation()
     music.togglePlaying()
   }
-  handleListClick(i) {
-    // 跳转到目的页面，打开新页面
+  // 点击mini播放器进入到详情
+  turnDetail() {
     Taro.navigateTo({
-      url: `/pages/detail/index?i=${i + 1}`
+      url: `/pages/detail/index`
     })
   }
   render() {
@@ -123,7 +127,7 @@ export default class Index extends Component {
           )}
         </View>
         {this.state.curMusic && (
-          <View className="music-footer">
+          <View className="music-footer" onClick={this.turnDetail}>
             <View className="music-img">
               <Image src={this.state.curMusic.picUrl} alt />
             </View>
