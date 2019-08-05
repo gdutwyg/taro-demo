@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import music, { events } from '../../static/js/music'
+import ProgressBar from '../../components/progressBar/index'
 export default class Detail extends Component {
   config = {
     navigationBarTitleText: '音乐详情页'
@@ -9,13 +10,10 @@ export default class Detail extends Component {
   constructor() {
     super()
     this.state = {
-      // 当前播放时间
-      currentTime: 0,
       playList: [],
       curIndex: -1,
       isPlaying: false,
-      curMusic: null,
-      duration: 0
+      curMusic: null
     }
   }
   prevMusic() {
@@ -37,9 +35,7 @@ export default class Detail extends Component {
       curMusic: this.state.playList[curIndex]
     })
   }
-  musicTimeUpdateFn = ({ currentTime, duration }) => {
-    console.log(currentTime, duration)
-  }
+
   componentWillMount() {
     this.setState({
       playList: music.playList,
@@ -49,12 +45,10 @@ export default class Detail extends Component {
     })
     // 监听是否在播放
     events.on('togglePlaying', this.togglePlayingFn)
-    events.on('musicTimeUpdate', this.musicTimeUpdateFn)
   }
   componentDidMount() {}
   componentWillUnmount() {
     events.off('togglePlaying', this.togglePlayingFn)
-    events.off('musicTimeUpdate', this.musicTimeUpdateFn)
   }
   render() {
     return (
@@ -76,11 +70,7 @@ export default class Detail extends Component {
           </View>
         </View>
         <View class="detail-player">
-          {/* <progress-bar
-        :currentTime="currentTime"
-        :percent="percentMusic"
-        @percentChange="changeProgress"
-      ></progress-bar> */}
+          <ProgressBar />
           <View class="music-controls">
             <View class="btn btn-mode" />
             <View class="btn btn-prev" onClick={this.prevMusic} />

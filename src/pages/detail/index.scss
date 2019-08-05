@@ -30,7 +30,7 @@
     }
   }
   .detail-cover {
-    height: calc(100% - 100px - 144px);
+    height: calc(100% - 100px - 184px);
     .player-cd {
       width: 100%;
       overflow: hidden;
@@ -78,7 +78,7 @@
   }
   .detail-player {
     color: #fff;
-    height: 144px;
+    height: 184px;
     font-size: 24px;
     .music-controls {
       display: flex;

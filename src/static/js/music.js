@@ -30,7 +30,7 @@ class Music {
       innerAudioContext.src = this.playList[i].url
       setTimeout(() => {
         innerAudioContext.play()
-      }, 500)
+      }, 300)
     } else {
       // 音乐不可用
       Taro.showToast({
@@ -80,6 +80,9 @@ innerAudioContext.onPause(() => {
 })
 // 进度更新
 innerAudioContext.onTimeUpdate(() => {
-  console.log(innerAudioContext.currentTime)
+  events.trigger('musicTimeUpdate', {
+    currentTime: innerAudioContext.currentTime,
+    duration: innerAudioContext.duration
+  })
 })
 export default music

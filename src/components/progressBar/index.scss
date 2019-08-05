@@ -1,16 +1,16 @@
 .music-progress {
   display: flex;
-  padding: 0 20px;
-  height: 20px;
+  padding: 0 40px;
+  height: 40px;
   align-items: center;
   .music-progress-bar {
     position: relative;
     width: 100%;
-    line-height: 20px;
-    margin: 0 12px;
-    padding: 5px 0;
+    line-height: 40px;
+    margin: 0 32px;
+    padding: 10px 0;
     .music-progress-outer {
-      height: 2px;
+      height: 4px;
       width: 100%;
       background-color: hsla(0, 0%, 100%, 0.15);
     }
@@ -20,15 +20,15 @@
       left: 0;
       display: inline-block;
       width: 0;
-      height: 2px;
+      height: 4px;
       background: rgb(229, 71, 60);
-      width: 0px;
+      width: 0;
       .music-progress-dot {
         position: absolute;
         top: 50%;
-        right: -9px;
-        width: 18px;
-        height: 18px;
+        right: -18px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         transform: translate(0, -50%);
         background-color: #fff;
@@ -37,8 +37,8 @@
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 5px;
-          height: 5px;
+          width: 10px;
+          height: 10px;
           border-radius: 50%;
           background-color: rgb(229, 71, 60);
           transform: translate(-50%, -50%);
